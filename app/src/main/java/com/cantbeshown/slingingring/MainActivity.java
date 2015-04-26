@@ -1,10 +1,11 @@
 package com.cantbeshown.slingingring;
-
+import android.graphics.Color;
+import android.util.*;
+import android.widget.*;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -13,7 +14,31 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final Switch onOffSwitch = (Switch) findViewById(R.id.Difficulty);
+        onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.v("Switch State=", ""+isChecked);
+                if(!isChecked) {
+                    buttonView.setTextColor(Color.parseColor("#ff47a14f"));
+                    buttonView.setText(onOffSwitch.getTextOff());
+
+                }
+                else {
+                    buttonView.setTextColor(Color.parseColor("#ffa13145"));
+                    buttonView.setText(onOffSwitch.getTextOn());
+
+                }
+            }
+
+        });
+
+
     }
+
+
 
 
     @Override
@@ -37,4 +62,9 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+// Sets the text for when the button is not in the checked state.
+
+
+// Sets the text for when the button is in the checked state.
 }
